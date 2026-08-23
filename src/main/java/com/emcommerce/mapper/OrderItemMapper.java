@@ -1,4 +1,4 @@
 package com.emcommerce.mapper;
 
-public class OrderItemMapper {
+public interface OrderItemMapper {
 }

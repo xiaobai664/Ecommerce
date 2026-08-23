@@ -1,4 +1,4 @@
 package com.emcommerce.controller;
 
-public class OrderContorller {
+public class OrderController {
 }

@@ -30,4 +30,14 @@ public class UserServiceImpl implements UserService {
 		user.setRole("USER");
 		userMapper.insert(user);
 	}
+
+	@Override
+	public int setName(String name) {
+		return 0;
+	}
+
+	@Override
+	public int setPassword(String password) {
+		return 0;
+	}
 }
