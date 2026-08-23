@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce
+    username: root
+    password:
+
+  mybatis:
+    configuration:
+      map-underscore-to-camel-case:true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
