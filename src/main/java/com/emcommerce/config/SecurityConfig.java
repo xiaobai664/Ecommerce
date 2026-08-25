@@ -1,28 +1,39 @@
 package com.emcommerce.config;
 
+import com.emcommerce.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFIlter) throws Exception {
 		http.csrf(csrf->csrf.disable())
 			.authorizeHttpRequests(
 				auth -> auth
-					.requestMatchers("/register")
+					.requestMatchers("auth/login","auth/register","/auth/code/send",
+							"/auth/code/check")
 					.permitAll()
+					.requestMatchers("/user/me")
+					.authenticated()
 					.anyRequest()
 					.authenticated()
 			)
-			.formLogin(Customizer.withDefaults());
+			.formLogin(from -> from.disable())
+			.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+			.addFilterBefore(
+					jwtAuthenticationFIlter,
+					UsernamePasswordAuthenticationFilter.class
+			);
 		return http.build();
 	}
 	@Bean

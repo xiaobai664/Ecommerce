@@ -12,3 +12,14 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+
+jwt:
+  secret: your-secret-key-at-least-32-characters
+  expiration: 86400000

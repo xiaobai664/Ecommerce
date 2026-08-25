@@ -1,0 +1,7 @@
+curl -i -X POST "http://localhost:8080/auth/login" -H "Content-Type: application/json" -d "{\"identifier\":\"test@qq.com\",\"password\":\"123456\"}"
+
+curl -i -X GET "http://localhost:8080/user/me" -H "Authorization: Bearer eyJhbGc"
+
+
+
+

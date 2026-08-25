@@ -3,8 +3,8 @@ package com.emcommerce.dto.request;
 import lombok.Data;
 
 @Data
-public class LoginRequest{
+public class CodeRequest {
 	private String identifier;
-	private String password;
+	private String scene;
 	private String code;
 }
